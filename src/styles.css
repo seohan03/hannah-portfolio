@@ -1,0 +1,526 @@
+@font-face {
+  font-family: "PP Mondwest";
+  src: url("./assets/fonts/ppmondwest-regular.otf")
+       format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TT Chocolates";
+  src: url("./assets/fonts/tt-chocolates-regular.otf")
+       format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111111;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+a { color: inherit; text-decoration: none; }
+button, a { -webkit-tap-highlight-color: transparent; }
+a:focus-visible { outline: 2px solid #f866ca; outline-offset: 5px; }
+
+.site-container { width: 77.5%; max-width: 1590px; margin-inline: auto; }
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.98);
+  height: 75px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 23px 5.35% 0;
+}
+.wordmark,
+.navigation,
+.project-meta p,
+.footer-inner,
+.inner-page h1,
+.detail-category { font-family: Georgia, 'Times New Roman', serif; }
+.wordmark { font-size: 25px; letter-spacing: -1.3px; white-space: nowrap; line-height: 1; }
+.wordmark-sparkle { font-size: 17px; margin-right: 6px; vertical-align: 2px; }
+.navigation { display: flex; gap: 34px; font-size: 24px; line-height: 1; }
+.navigation a { transition: color .2s ease; }
+.navigation a:hover, .navigation a.active { color: #fa69ce; }
+
+.intro { position: relative; padding-top: 305px; padding-bottom: 140px; }
+.intro-content { position: relative; margin-left: -25px; }
+.intro h1 { margin: 0 0 25px; font: 400 clamp(54px, 4vw, 70px)/1.1 Georgia, 'Times New Roman', serif; letter-spacing: -2.4px; }
+.welcome-plus { font-size: .48em; position: relative; bottom: .06em; letter-spacing: 0; }
+.intro-bio { margin: 0; font-size: clamp(18px, 1.22vw, 24px); line-height: 1.45; letter-spacing: -.3px; }
+.intro-tagline { color: #f865c8; font-size: clamp(17px, 1.04vw, 21px); margin: 10px 0 0; }
+
+/* Pure-CSS placeholder for the floating pixel-like bubbles. */
+.sparkle-pair { position: absolute; width: 68px; height: 68px; animation: float 5s ease-in-out infinite; }
+.sparkle-pair--top { left: -20px; top: 210px; }
+.sparkle-pair--heading { left: 330px; top: 0; transform: scale(0.95); animation-delay: -2s; }
+.sparkle-pair__large, .sparkle-pair__small { position: absolute; display: block; border-radius: 50%; background: radial-gradient(circle at 40% 35%, white 0%, #fffafa 35%, #ffe3f2 59%, #bad8f7 80%, #8cf4f9 95%); box-shadow: 2px 0 #d0e8ff, -2px 1px #ffd3e8; }
+.sparkle-pair__large { width: 29px; height: 29px; top: 0; left: 18px; }
+.sparkle-pair__small { width: 21px; height: 21px; top: 25px; left: 2px; }
+.sparkle-pair__pixel { position: absolute; left: 46px; top: 6px; color: #bfd2ec; font: 18px/1 Georgia,serif; }
+@keyframes float { 0%, 100% { translate: 0 0; } 50% { translate: 0 -7px; } }
+
+.projects { scroll-margin-top: 85px; }
+.project-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 52px; row-gap: 47px; }
+.project-card { min-width: 0; }
+.project-thumbnail { display: block; overflow: hidden; aspect-ratio: 1.65 / 1; background: #f7f7f7; }
+.project-thumbnail img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .5s cubic-bezier(.2,.65,.3,1); }
+.project-thumbnail:hover img, .project-thumbnail:focus-visible img { transform: scale(1.025); }
+.project-meta { display: flex; gap: 12px; justify-content: space-between; align-items: baseline; padding: 13px 7px 0; }
+.project-meta h2 { margin: 0; font-size: clamp(17px, 1.04vw, 23px); font-weight: 400; letter-spacing: -.4px; line-height: 1.4; }
+.project-meta p { white-space: nowrap; margin: 0; color: #939393; font-size: clamp(16px, 1vw, 21px); }
+.project-meta p span { color: #858585; font-size: .8em; margin-inline: 6px; }
+
+.site-footer { margin-top: 252px; border-top: 1px solid #cfcfcf; }
+.footer-inner { display: flex; justify-content: space-between; padding: 14px 50px 24px; color: #b3b3b3; font-size: clamp(15px, .92vw, 19px); }
+.inner-page { min-height: 58vh; padding-top: 180px; }
+.inner-page h1 { font-size: clamp(48px, 5vw, 76px); font-weight: 400; }
+.inner-page p { font-size: 22px; line-height: 1.6; max-width: 800px; }
+.page-note { color: #777; font-size: 18px !important; }
+.back-link { color: #ef60bd; display: inline-block; font-size: 18px; margin-bottom: 25px; }
+.project-detail img { display: block; max-width: 950px; width: 100%; height: auto; margin-top: 60px; }
+.detail-category { color: #999; }
+
+@media (max-width: 1100px) {
+  .site-container { width: 86%; }
+  .intro { padding-top: 245px; padding-bottom: 110px; }
+  .intro-content { margin-left: 0; }
+  .project-grid { gap: 44px 25px; }
+  .project-meta { display: block; padding-left: 0; }
+  .project-meta p { padding-top: 3px; }
+  .sparkle-pair--heading { left: 295px; }
+}
+@media (max-width: 700px) {
+  .site-header { height: 67px; padding: 20px 6% 0; }
+  .wordmark { font-size: 20px; }
+  .navigation { gap: 22px; font-size: 20px; }
+  .site-container { width: 88%; }
+  .intro { padding-top: 170px; padding-bottom: 80px; }
+  .intro h1 { font-size: 52px; }
+  .intro-bio { font-size: 17px; line-height: 1.5; }
+  .intro-tagline { font-size: 16px; line-height: 1.4; }
+  .desktop-break { display: none; }
+  .sparkle-pair--top { left: -2px; top: 80px; transform: scale(.75); }
+  .sparkle-pair--heading { left: 260px; top: 0; transform: scale(.65); }
+  .project-grid { grid-template-columns: 1fr; gap: 44px; }
+  .project-meta { display: flex; flex-wrap: wrap; gap: 1px 8px; }
+  .project-meta h2 { font-size: 17px; }
+  .project-meta p { font-size: 15px; }
+  .site-footer { margin-top: 130px; }
+  .footer-inner { padding: 15px 0 22px; font-size: 13px; }
+  .inner-page { padding-top: 120px; }
+  .inner-page p { font-size: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+}
+
+/* Keep the repository link visible without overpowering the minimal footer. */
+.repo-link { font-size: 0.85rem; text-align: right; margin-top: 0.6rem; }
+.repo-link a { color: inherit; text-decoration: underline; text-underline-offset: 0.22em; }
+
+/* PP Mondwest: heading and navigation */
+
+.intro h1,
+.wordmark,
+.navigation {
+  font-family: "PP Mondwest", Georgia, serif;
+  font-weight: 400;
+}
+
+/* TT Chocolates: introduction */
+
+.intro-bio {
+  font-family: "TT Chocolates", Arial, sans-serif;
+  font-weight: 400;
+}
+
+.site-footer {
+  font-family: "PP Mondwest", Georgia, serif;
+  font-weight: 400;
+}
+
+/* ================================
+   ABOUT PAGE
+   ================================ */
+
+.about-layout {
+  width: min(1280px, 70vw);
+  margin: 0 auto;
+  padding-top: clamp(140px, 12vw, 245px);
+  padding-bottom: 180px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 58px;
+  align-items: start;
+}
+
+/* LEFT: Biography */
+
+.about-copy {
+  padding-top: 55px;
+  font-family: "TT Chocolates", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.43;
+  color: #1c1c1c;
+}
+
+.about-copy p {
+  margin: 0;
+}
+
+.about-opening {
+  margin-bottom: 24px !important;
+}
+
+.about-story {
+  color: #888888;
+  margin-bottom: 24px !important;
+}
+
+.about-hobbies {
+  margin-bottom: 24px;
+}
+
+.about-hobbies ol {
+  list-style: none;
+  counter-reset: hobbies;
+  padding-left: 10px;
+  margin: 2px 0 0;
+  color: #888888;
+}
+
+.about-hobbies li {
+  counter-increment: hobbies;
+}
+
+.about-hobbies li::before {
+  content: counter(hobbies, decimal-leading-zero) ". ";
+  margin-right: 5px;
+}
+
+.about-contact span,
+.about-contact a {
+  display: block;
+  color: #1c1c1c;
+  text-decoration: none;
+}
+
+.about-contact .about-muted {
+  color: #888888;
+}
+
+.about-contact a:hover {
+  color: #f268c6;
+}
+
+/* RIGHT: Image collage */
+
+.about-gallery {
+  min-width: 0;
+}
+
+.about-card-image {
+  display: block;
+  width: 94%;
+  max-width: 565px;
+  height: auto;
+  margin: 0 auto 10px;
+}
+
+.about-photo-group {
+  margin-bottom: 32px;
+}
+
+.about-photo-number {
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 16px;
+  color: #888888;
+  margin: 0 0 10px;
+}
+
+.about-photos {
+  display: grid;
+  gap: 12px;
+  align-items: start;
+}
+
+.about-photos--cafes {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-photos--museums {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.about-photos img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* MOBILE AND TABLET */
+
+@media (max-width: 900px) {
+  .about-layout {
+    width: calc(100% - 44px);
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding-top: 110px;
+    padding-bottom: 90px;
+  }
+
+  .about-copy {
+    padding-top: 0;
+    font-size: 15px;
+  }
+
+  .about-gallery {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .about-photo-group {
+    margin-bottom: 28px;
+  }
+}
+
+
+/* ================================
+   INTERACTIVE ABOUT ENVELOPE
+   ================================ */
+
+
+/* Envelope and paper layout */
+
+.envelope-interactive {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+  min-height: 465px;
+  margin: 0 auto 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Actual envelope image: stays still */
+
+.envelope-image {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Letter: sits slightly above the envelope */
+
+.identity-card {
+  position: relative;
+  z-index: 1;
+
+  width: 70%;
+  min-height: 385px;
+  box-sizing: border-box;
+
+  margin-top: -22px;
+  margin-left: 33px;
+  padding: 24px 22px 30px;
+
+  background: #fafaf6;
+  box-shadow: 0 8px 28px rgba(85, 60, 35, 0.06);
+
+  font-family: "PP Mondwest", Georgia, serif;
+  color: #222;
+
+  transform-origin: center center;
+}
+
+/* Mobile positioning */
+
+@media (max-width: 600px) {
+  .envelope-interactive {
+    min-height: 430px;
+  }
+
+  .identity-card {
+    width: 86%;
+    margin-top: -12px;
+    padding: 20px 16px;
+  }
+}
+
+
+/* Paper card */
+
+.identity-card {
+  position: relative;
+  z-index: 1;
+  width: 80%;
+  min-height: 385px;
+  padding: 24px 22px 30px;
+  box-sizing: border-box;
+  background: #fafaf6;
+  box-shadow: 0 8px 28px rgba(85, 60, 35, 0.06);
+  font-family: "PP Mondwest", Georgia, serif;
+  color: #222;
+}
+
+.identity-card-handle {
+  color: #ddddda;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 23px;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.identity-card-intro {
+  font-size: 16px;
+  margin: 0 0 15px;
+}
+
+/* Individual sections */
+
+.identity-card-section {
+  margin-bottom: 18px;
+}
+
+.identity-card-heading {
+  font-size: 15px;
+  margin: 0 0 10px;
+  color: #222;
+}
+
+.identity-card-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 13px;
+  padding-left: 5px;
+}
+
+/* Clickable text options */
+
+.identity-option {
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  color: #a5a5a5;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.identity-option:hover {
+  color: #f268c6;
+}
+
+.identity-option.selected {
+  color: #f268c6;
+}
+
+.identity-option:active {
+  transform: scale(0.95);
+}
+
+.identity-option:focus-visible,
+.envelope-backdrop:focus-visible {
+  outline: 2px solid #f268c6;
+  outline-offset: 4px;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
+  .envelope-interactive {
+    min-height: 430px;
+    padding-top: 18px;
+  }
+
+  .identity-card {
+    width: 86%;
+    padding: 20px 16px;
+  }
+
+  .identity-option {
+    font-size: 14px;
+  }
+
+  .identity-card-heading {
+    font-size: 14px;
+  }
+}
+
+/* ================================
+   DRAGGABLE LETTER
+   ================================ */
+
+/* Allow paper to move outside envelope area */
+.envelope-interactive {
+  overflow: visible;
+}
+
+/* Movable paper wrapper */
+.paper-drag-layer {
+  position: relative;
+  z-index: 2;
+
+  width: 80%;
+  margin-top: -22px;
+
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+}
+
+/* Cursor while dragging */
+.paper-drag-layer.is-dragging {
+  cursor: grabbing;
+}
+
+/* Paper fills draggable wrapper */
+.paper-drag-layer .identity-card {
+  width: 100%;
+  margin-top: 0;
+  transform-origin: center center;
+}
+
+/* Keep envelope stationary */
+.envelope-image {
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .paper-drag-layer {
+    width: 86%;
+    margin-top: -12px;
+  }
+}
