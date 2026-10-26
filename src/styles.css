@@ -524,3 +524,195 @@ a:focus-visible { outline: 2px solid #f866ca; outline-offset: 5px; }
     margin-top: -12px;
   }
 }
+
+
+/* =================================
+   PORTFOLIO PROJECT SECTIONS
+   ================================= */
+
+.portfolio-section {
+  margin-bottom: 90px;
+}
+
+.portfolio-section-title {
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #222222;
+  margin: 0 0 32px;
+}
+
+/* Space between case studies and 15-113 projects */
+
+.portfolio-section + .portfolio-section {
+  margin-top: 110px;
+}
+
+/* Project description */
+
+.project-meta .project-description {
+  font-family: "TT Chocolates", Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #888888;
+  margin-top: 10px;
+  max-width: 440px;
+}
+
+/* GitHub link */
+
+.project-repo-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 15px;
+  color: #222222;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-repo-link:hover {
+  color: #ef8dbe;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .portfolio-section {
+    margin-bottom: 60px;
+  }
+
+  .portfolio-section + .portfolio-section {
+    margin-top: 75px;
+  }
+
+  .portfolio-section-title {
+    font-size: 27px;
+    margin-bottom: 24px;
+  }
+}
+
+
+/* ================================
+   FIX PROJECT CARD LAYOUT
+   ================================ */
+
+/* Allow descriptions to appear below titles */
+.project-meta {
+  display: block;
+  width: 100%;
+}
+
+/* Project name on left, category on right */
+.project-meta-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Project title */
+.project-meta-top h2 {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+}
+
+/* Project category */
+.project-meta .project-category {
+  flex-shrink: 0;
+  margin: 0;
+  text-align: right;
+}
+
+/* Project description */
+.project-meta .project-description {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 14px 0 0;
+  font-family: "TT Chocolates", Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #888888;
+}
+
+/* GitHub link underneath description */
+.project-meta .project-repo-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 15px;
+  color: #222222;
+  text-decoration: none;
+}
+
+.project-meta .project-repo-link:hover {
+  color: #ef8dbe;
+}
+
+/* Show the full terminal screenshot */
+.project-thumbnail--course {
+  background: #1e1e2e;
+}
+
+.project-thumbnail--course img {
+  object-fit: contain;
+}
+
+/* Spacing between portfolio sections */
+.portfolio-section {
+  margin-bottom: 0;
+}
+
+.portfolio-section + .portfolio-section {
+  margin-top: 80px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .project-meta-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .project-meta .project-category {
+    text-align: left;
+  }
+
+  .portfolio-section + .portfolio-section {
+    margin-top: 60px;
+  }
+}
+
+
+/* Portfolio sections */
+
+.portfolio-section + .portfolio-section {
+  margin-top: 90px;
+}
+
+.portfolio-section-title {
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  margin: 0 0 32px;
+}
+
+/* GitHub link on its own line */
+
+.project-card > .project-repo-link {
+  display: block;
+  width: fit-content;
+  margin-top: 12px;
+  font-family: "PP Mondwest", Georgia, serif;
+  font-size: 15px;
+  color: #222;
+  text-decoration: none;
+}
+
+.project-card > .project-repo-link:hover {
+  color: #ef8dbe;
+}

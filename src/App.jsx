@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useRef } from 'react';
 
+
 const projects = [
-  {/*{
+  {
     slug: 'building-a-brand-asset',
     title: 'Building a Brand Asset',
     category: 'Brand Identity',
     secondaryCategory: 'Scalable Content',
     image: `${import.meta.env.BASE_URL}images/plus.jpg`,
-    imageAlt: 'PLUS brand identity collage with colorful illustrations, mockups, and typography',
+    imageAlt: 'PLUS brand identity collage',
   },
   {
     slug: 'room-to-bloom',
@@ -15,7 +16,7 @@ const projects = [
     category: 'App Design',
     secondaryCategory: 'User Research',
     image: `${import.meta.env.BASE_URL}images/room-to-bloom.jpg`,
-    imageAlt: 'Room to Bloom mobile app mockup shown against a muted green background',
+    imageAlt: 'Room to Bloom mobile app mockup',
   },
   {
     slug: 'figmamake',
@@ -23,9 +24,24 @@ const projects = [
     category: 'AI Collaboration',
     secondaryCategory: 'Website Design',
     image: `${import.meta.env.BASE_URL}images/figmamake.jpg`,
-    imageAlt: 'FigmaMake multi-step website interface with a customized floral gift form',
-  }, */}
+    imageAlt: 'FigmaMake website interface',
+  },
+
+  // 15-113 PROJECTS
+  
+  {
+    slug: 'movie-marathon-curator',
+    title: 'Movie Marathon Curator',
+    section: '15-113',
+    category: 'Python',
+    secondaryCategory: 'Semantic Search',
+    image: `${import.meta.env.BASE_URL}images/movie-curator.png`,
+    imageAlt: 'Movie Marathon Curator project screenshot',
+    githubUrl: 'https://github.com/seohan03/movie-marathon-curator',
+  },
+
 ];
+
 
 function Navigation({ active }) {
   return (
@@ -83,19 +99,55 @@ function Intro() {
   );
 }
 
+
 function ProjectCard({ project }) {
+  const isExternal = Boolean(project.githubUrl);
+  const link = project.githubUrl || `#/projects/${project.slug}`;
+
   return (
     <article className="project-card">
-      <a className="project-thumbnail" href={`#/projects/${project.slug}`} aria-label={`View ${project.title} project`}>
+      <a
+        className="project-thumbnail"
+        href={link}
+        target={isExternal ? "_blank" : undefined}
+        rel={isExternal ? "noopener noreferrer" : undefined}
+        aria-label={`View ${project.title} project`}
+      >
         <img src={project.image} alt={project.imageAlt} />
       </a>
+
       <div className="project-meta">
-        <h2><a href={`#/projects/${project.slug}`}>{project.title}</a></h2>
-        <p>{project.category} <span aria-hidden="true">▪</span> {project.secondaryCategory}</p>
+        <h2>
+          <a
+            href={link}
+            target={isExternal ? "_blank" : undefined}
+            rel={isExternal ? "noopener noreferrer" : undefined}
+          >
+            {project.title}
+          </a>
+        </h2>
+
+        <p>
+          {project.category}
+          <span aria-hidden="true"> ▪ </span>
+          {project.secondaryCategory}
+        </p>
       </div>
+
+      {project.githubUrl && (
+        <a
+          className="project-repo-link"
+          href={project.githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          View GitHub repository ↗
+        </a>
+      )}
     </article>
   );
 }
+
 
 function Footer() {
   return (
@@ -113,22 +165,69 @@ function Footer() {
   );
 }
 
+
 function HomePage() {
+  const caseStudies = projects.filter(
+    (project) => project.section !== '15-113'
+  );
+
+  const courseProjects = projects.filter(
+    (project) => project.section === '15-113'
+  );
+
   return (
     <>
       <Navigation active="work" />
+
       <main>
-        <div className="site-container"><Intro /></div>
-        <section className="site-container projects" id="work" aria-label="Selected work">
-          <div className="project-grid">
-            {projects.map((project) => <ProjectCard key={project.slug} project={project} />)}
+        <div className="site-container">
+          <Intro />
+        </div>
+
+        <section
+          className="site-container projects"
+          id="work"
+          aria-label="Selected work"
+        >
+          {/* 15-113 PROJECTS FIRST */}
+          <div className="portfolio-section" id="15113-projects">
+            <h2 className="portfolio-section-title">
+              15-113 Projects
+            </h2>
+
+            <div className="project-grid">
+              {courseProjects.map((project) => (
+                <ProjectCard
+                  key={project.slug}
+                  project={project}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* CASE STUDIES SECOND */}
+          <div className="portfolio-section">
+            <h2 className="portfolio-section-title">
+              Case Studies
+            </h2>
+
+            <div className="project-grid">
+              {caseStudies.map((project) => (
+                <ProjectCard
+                  key={project.slug}
+                  project={project}
+                />
+              ))}
+            </div>
           </div>
         </section>
       </main>
+
       <Footer />
     </>
   );
 }
+
 
 
 function InteractiveEnvelope() {
@@ -208,6 +307,7 @@ function InteractiveEnvelope() {
   };
 
 
+  
   const chooseOption = (group, option) => {
     setSelected((previous) => ({
       ...previous,
@@ -216,6 +316,7 @@ function InteractiveEnvelope() {
 
     bounceEnvelope();
   };
+
 
 
   // Start dragging the letter
